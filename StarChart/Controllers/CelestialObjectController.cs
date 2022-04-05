@@ -63,8 +63,11 @@ namespace StarChart.Controllers
 
             if (celObject == null) return NotFound();
 
-            celObject = celestialObject;
-            _context.Update(celObject);
+            celObject.Name = celestialObject.Name;
+            celObject.OrbitalPeriod = celestialObject.OrbitalPeriod;
+            celObject.OrbitedObjectId = celestialObject.OrbitedObjectId;
+
+            _context.CelestialObjects.Update(celObject);
             _context.SaveChanges();
 
             return NoContent();
